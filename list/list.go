@@ -56,6 +56,7 @@ type ListArrayInfo struct {
 	Name    string
 	Connect string
 	Note    string
+	Owner   string
 }
 
 // arrayContains returns that arr contains str.
@@ -123,15 +124,16 @@ func (l *ListInfo) getText() {
 	buffer := &bytes.Buffer{}
 	tabWriterBuffer := new(tabwriter.Writer)
 	tabWriterBuffer.Init(buffer, 0, 4, 8, ' ', 0)
-	fmt.Fprintln(tabWriterBuffer, "ServerName \tConnect Information \tNote \t")
+	fmt.Fprintln(tabWriterBuffer, "ServerName \tConnect Information \tNote \tOwner \t")
 
 	// Create list table
 	for _, key := range l.NameList {
 		name := convNewline(key, "")
 		conInfo := convNewline(l.DataList.Server[key].User+"@"+l.DataList.Server[key].Addr, "")
 		note := convNewline(l.DataList.Server[key].Note, "")
+		owner := convNewline(l.DataList.Server[key].Owner, "")
 
-		fmt.Fprintln(tabWriterBuffer, name+"\t"+conInfo+"\t"+note)
+		fmt.Fprintln(tabWriterBuffer, name+"\t"+conInfo+"\t"+note+"\t"+owner)
 	}
 
 	tabWriterBuffer.Flush()

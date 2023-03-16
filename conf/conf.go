@@ -167,7 +167,8 @@ type ServerConfig struct {
 	ServerAliveCountInterval int `toml:"alive_interval"`
 
 	// note
-	Note string `toml:"note"`
+	Note  string `toml:"note"`
+	Owner string `toml:"owner"`
 }
 
 // ProxyConfig is that stores Proxy server settings connected via http and socks5.
@@ -179,6 +180,7 @@ type ProxyConfig struct {
 	Proxy     string `toml:"proxy"`
 	ProxyType string `toml:"proxy_type"`
 	Note      string `toml:"note"`
+	Owner     string `toml:"owner"`
 }
 
 // OpenSSHConfig is read OpenSSH configuration file.
